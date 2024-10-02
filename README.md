@@ -1,1 +1,1 @@
-# cover_letter
+# Cover Letter Generation
