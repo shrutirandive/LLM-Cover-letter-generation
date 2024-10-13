@@ -16,7 +16,7 @@ load_dotenv()
 c_date = datetime.now()
 # Format the date as 'Month Day, Year'
 current_date = c_date.strftime("%B %d, %Y")
-
+print(current_date)
 
 class Chain:
     def __init__(self):
@@ -58,8 +58,8 @@ class Chain:
             pdf_resp = json_parser.parse(pdf_resp.content)
         except OutputParserException:
             raise OutputParserException("Context too big. Unable to parse jobs.")
-        print("==== Resume =====")
-        print (pdf_resp)
+        # print("==== Resume =====")
+        # print (pdf_resp)
         return pdf_resp 
 
 
@@ -74,11 +74,14 @@ class Chain:
             Your job is to extract the job postings and return them in JSON format containing the 
             following keys: 'company_name', 'company_address', 'role', 'experience', 'skills', 'description' and 'about'.
             elaborate all 'experience' in 2nd paragraph.
-            Experience and Qualifications are same and would stored in 'experience'.
-            Skills and Abilities would be stored in 'skills'.
+            
+            Experience or Qualifications are same and would stored in 'experience'.            
+            Skills, or Technology or Abilities would be stored in 'skills'.            
             Fetch job details from the description, names having engineer, Analyst, developer, business, cloud and store in 'role'.
             In 'about' include description about company mentioned in the website about the company_name.
             In 'company_address' include any of the company Locations mentioned in website. 
+            
+            
             Only return the valid JSON.
             ### VALID JSON (NO PREAMBLE):    
             """
@@ -91,8 +94,8 @@ class Chain:
             resp = json_parser.parse(resp.content)
         except OutputParserException:
             raise OutputParserException("Context too big. Unable to parse jobs.")
-        print("==== Job Description =====")
-        print(resp)
+        # print("==== Job Description =====")
+        # print(resp)
         return resp if isinstance(resp, list) else [resp]
     
     def write_cover_letter(self, company_name, description, company_address, about, role, skills, experience, 

@@ -5,7 +5,7 @@ from utils import clean_text
 import pandas
 
 def create_streamlit_app(llm, clean_text):
-    st.title(":page_with_curl: Cover Letter Generation")
+    st.title(":page_with_curl: Build your Cover Letter")
     with st.sidebar:        
         url_input = st.text_input("Enter a URL:")
         st.markdown("OR")
@@ -31,7 +31,7 @@ def create_streamlit_app(llm, clean_text):
             pdf_text = Chain.input_pdf_text(uploaded_file)
             # extracting data from pdf text to keys
             resume = llm.extract_data_from_pdf(pdf_text)
-            print(resume, type(resume))
+            # print(resume, type(resume))
             
             full_name = resume.get('Full Name')
             contact_number = resume.get('Contact Number')
@@ -50,8 +50,8 @@ def create_streamlit_app(llm, clean_text):
             elif job_descrip:
                 data = clean_text(job_descrip)
                 jobs = llm.extract_data(data)
-            print("========================")
-            print(jobs)
+            # print("========================")
+            # print(jobs)
             for job in jobs:
                 company_name = job.get('company_name',[])
                 description = job.get('description',[])
@@ -64,6 +64,8 @@ def create_streamlit_app(llm, clean_text):
             letter = llm.write_cover_letter(company_name, description, company_address, about, role, skills, experience, 
                                             full_name, contact_number, email, degree, resume_skills, resume_experience)
                 # st.code(letter, language='markdown')
+            st.markdown('')
+            st.markdown(":red[(Revise your cover letter accordingly!!)]")
             st.markdown(letter)
         except Exception as e:
             st.error(f"An Error Occurred: {e}")
