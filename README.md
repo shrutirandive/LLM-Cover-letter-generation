@@ -8,7 +8,7 @@ This project helps users create tailored cover letters for specific job postings
 
 Instead of installing and using LLaMA locally, we will be using Groq, as it takes a lot of time to run. Groq is a platform that allows you to run LLaMA 3.1 in the cloud. The inference is very fast because they use LPU
 
-**Groq LLaMA**: A large language model used for generating content and extracting data.
+**Groq LLaMA**: LLaMA (Large Language Model Meta AI) is a series of large language models developed by Meta
 
 **PyPDF2**: For extracting text from PDF files.
 
