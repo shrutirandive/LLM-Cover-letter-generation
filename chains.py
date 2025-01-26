@@ -10,13 +10,19 @@ import PyPDF2 as pdf
 import re
 # from transformers import pipeline
 
+from datetime import datetime
+import pytz
+
 load_dotenv()
 
-# Get current date
-c_date = datetime.now()
+# Specify the desired timezone (e.g., 'America/New_York' for Eastern Time)
+usa_timezone = pytz.timezone('America/New_York')
+# Get the current date and time in the specified timezone
+c_date = datetime.now(usa_timezone)
 # Format the date as 'Month Day, Year'
 current_date = c_date.strftime("%B %d, %Y")
-print(current_date)
+
+print("Current date in USA (New York):", current_date)
 
 class Chain:
     def __init__(self):
